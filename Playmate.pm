@@ -8,7 +8,7 @@ use LWP::UserAgent;
 
 our @ISA = qw();
 
-our $VERSION = '0.02';
+our $VERSION = '0.03';
 
 
 my $url = "http://www.playboy.com/playmates/directory/";
@@ -29,9 +29,29 @@ sub new
 	}
 	my $con = $res->content;
 	$con =~ s/[\r\n]//g;
+	$con =~ s/&nbsp;/ /g;
 	$con =~ /.*?<span class="name">(.*?)<\/span>.*?/is;
 	my $name = $1;
-	my $self = {  Name => $name };
+	$con =~ /.*?<p><b>BIRTHDATE:<\/b>(.*?)<\/p>.*?/is;
+	my $birthDate = $1;
+	$con =~ /.*?<p><b>BIRTHPLACE:<\/b>(.*?)<\/p>.*?/is;
+        my $birthPlace = $1;
+        $con =~ /.*?<p><b>BUST:<\/b>(.*?)<\/p>.*?/is;
+        my $bust = $1;
+        $con =~ /.*?<p><b>WAIST:<\/b>(.*?)<\/p>.*?/is;
+        my $waist = $1;
+        $con =~ /.*?<p><b>HIPS:<\/b>(.*?)<\/p>.*?/is;
+        my $hips = $1;
+        $con =~ /.*?<p><b>HEIGHT:<\/b>(.*?)<\/p>.*?/is;
+        my $height = $1;
+        $con =~ /.*?<p><b>WEIGHT:<\/b>(.*?)<\/p>.*?/is;
+        my $weight = $1;
+	$weight = " " . $weight;
+
+	my $self = {  Name => $name, BirthDate => $birthDate,
+		      BirthPlace => $birthPlace, Bust => $bust,
+		      Waist => $waist, Hips => $hips,
+		      Height => $height, Weight => $weight };
 	bless $self, $class;
 	return $self;
 }
@@ -41,25 +61,26 @@ __END__
 
 =head1 NAME
 
-Acme::Playmate - Perl extension for blah blah blah
+Acme::Playmate
 
 =head1 SYNOPSIS
 
   use Acme::Playmate;
-  $playmate = new Acme::Playmate();
-  print $playmate{ "Name" };
 
-=head1 ABSTRACT
+  my $playmate = new Acme::Playmate("2003", "04");
 
-  This should be the abstract for Acme::Playmate.
-  The abstract is used when making PPD (Perl Package Description) files.
-  If you don't want an ABSTRACT you should also edit Makefile.PL to
-  remove the ABSTRACT_FROM option.
+  print "Details for playmate " . $playmate->{ "Name" } . "\n";
+  print "Birthdate" . $playmate->{ "BirthDate" } . "\n";
+  print "Birthplace" . $playmate->{ "BirthPlace" } . "\n";
+  print "Bust" . $playmate->{ "Bust" } . "\n";
+  print "Waist" . $playmate->{ "Waist" } . "\n";
+  print "Hips" . $playmate->{ "Hips" } . "\n";
+  print "Height" . $playmate->{ "Height" } . "\n";
+  print "Weight" . $playmate->{ "Weight" } . "\n";
 
 =head1 DESCRIPTION
 
 Acme::Playmate is a Perl extension to consult the playboy playmate directory for playmate information.
-Blah blah blah.
 
 =head2 EXPORT
 

@@ -1,5 +1,8 @@
 Revision history for Perl extension Acme::Playmate.
 
+0.03  Thu May  8 16:36:45 2003
+	- Added all details from the factsheet to the constructor
+	- Fixed errors in POD
 
 0.02  Mon May  5 16:55:01 2003
 	- Addded contructor that fetches a playmates name
