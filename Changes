@@ -1,0 +1,10 @@
+Revision history for Perl extension Acme::Playmate.
+
+
+0.02  Mon May  5 16:55:01 2003
+	- Addded contructor that fetches a playmates name
+
+0.01  Fri May  2 03:16:31 2003
+        - original version; created by h2xs 1.22 with options
+                -X -n Acme::Playmate
+
