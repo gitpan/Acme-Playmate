@@ -1,6 +1,11 @@
+Build.PL
+META.yml
 Changes
-Makefile.PL
 MANIFEST
-Playmate.pm
 README
-t/1.t
+lib/Acme/Playmate.pm
+t/00-load.t
+t/01-interface.t
+t/pod-coverage.t
+t/pod.t
+Makefile.PL

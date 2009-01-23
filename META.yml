@@ -1,0 +1,20 @@
+---
+name: Acme-Playmate
+version: 0.04
+author:
+  - 'O. S. de Zwart <olle@endforward.nl>'
+abstract: an object-oriented interface to playboy.com
+license: perl
+resources:
+  license: ~
+build_requires:
+  LWP::UserAgent: 0
+  Test::More: 0
+provides:
+  Acme::Playmate:
+    file: lib/Acme/Playmate.pm
+    version: 0.04
+generated_by: Module::Build version 0.31
+meta-spec:
+  url: http://module-build.sourceforge.net/META-spec-v1.2.html
+  version: 1.2
